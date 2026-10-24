@@ -1,0 +1,6 @@
+
+.env
+node_modules/
+careerpilot.db
+careerpilot.db-shm
+careerpilot.db-wal
