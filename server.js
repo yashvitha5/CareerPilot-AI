@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 const Database = require("better-sqlite3");
 
 const app = express();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 3000;
 const DB_PATH = process.env.DATABASE_PATH || path.join(__dirname, "careerpilot.db");
 const db = new Database(DB_PATH);
@@ -34,7 +35,7 @@ app.use(session({
   cookie: {
     httpOnly: true,
     sameSite: "lax",
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
     maxAge: 1000 * 60 * 60 * 2
   }
 }));
